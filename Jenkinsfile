@@ -3,25 +3,25 @@ pipeline {
     stages {
         stage('Prune Docker data') {
             steps {
-                sh 'docker image prune -a -f'
+                bat 'docker image prune -a -f'
             }
         }
         stage('Start container') {
             steps {
-                sh 'docker-compose up -d --build'
-                sh 'docker compose ps'
+                bat 'docker-compose up -d --build'
+                bat 'docker compose ps'
             }
         }
         stage('Run tests against the container') {
             steps {
-                sh 'curl http://localhost:3000/param?query=demo'
+                bat 'curl http://localhost:3000/param?query=demo'
             }
         }
     }
     post {
         always {
-            sh 'docker compose down'
-            sh 'docker compose ps'
+            bat 'docker compose down'
+            bat 'docker compose ps'
         }
     }
 }
