@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Prune Docker data') {
             steps {
-                'docker image prune -a -f'
+                bash -c 'docker image prune -a -f'
             }
         }
         stage('Start container') {
