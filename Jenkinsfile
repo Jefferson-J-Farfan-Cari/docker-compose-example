@@ -21,6 +21,7 @@ pipeline {
     post {
         always {
             bat 'docker compose ps'
+            bat 'docker compose down'
         }
     }
 }
